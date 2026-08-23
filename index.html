@@ -334,6 +334,76 @@ header.nav.scrolled .nav-bar{height:62px;}
 .case:hover .case-media .go{opacity:1;transform:none;}
 .case-media .go svg{width:20px;height:20px;}
 
+/* ---------- fact-check game ---------- */
+.fg-fab{position:fixed;right:26px;bottom:26px;z-index:80;width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--grad);color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(232,78,56,.5);
+  transition:transform .3s var(--ease),box-shadow .3s;}
+.fg-fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 18px 40px -10px rgba(232,78,56,.6);}
+.fg-fab svg{width:26px;height:26px;position:relative;z-index:2;}
+.fg-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--coral);animation:fgring 2.8s var(--ease) infinite;pointer-events:none;}
+@keyframes fgring{0%{transform:scale(1);opacity:.55;}70%{transform:scale(1.55);opacity:0;}100%{opacity:0;}}
+.fg-fab.open::after{display:none;}
+.fg-tip{position:absolute;right:70px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:12px;
+  background:var(--ink);color:var(--bone);padding:8px 12px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:var(--shadow);}
+.fg-fab:hover .fg-tip{opacity:1;}
+
+.fg-panel{position:fixed;right:26px;bottom:96px;z-index:81;width:374px;max-width:calc(100vw - 32px);
+  background:var(--surface);border:1px solid var(--line-2);border-radius:18px;box-shadow:var(--shadow-lift);overflow:hidden;
+  opacity:0;transform:translateY(18px) scale(.98);pointer-events:none;transition:opacity .32s var(--ease),transform .32s var(--ease);}
+.fg-panel.open{opacity:1;transform:none;pointer-events:auto;}
+.fg-head{position:relative;padding:22px 22px 20px;background:var(--night);color:var(--on-dark);overflow:hidden;}
+.fg-head .fg-glow{position:absolute;inset:-40% -10% auto auto;width:70%;height:160%;background:radial-gradient(circle at 70% 30%,var(--coral),transparent 62%);opacity:.5;filter:blur(30px);pointer-events:none;}
+.fg-head .fg-glow.t{background:radial-gradient(circle at 30% 70%,var(--teal-bright),transparent 60%);inset:auto auto -40% -10%;}
+.fg-eyebrow{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#FFD9CE;display:flex;align-items:center;gap:9px;}
+.fg-eyebrow .pls{width:16px;height:10px;}
+.fg-eyebrow .pls path{fill:none;stroke:#FFD9CE;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.fg-sub{position:relative;font-family:var(--serif);font-size:19px;line-height:1.2;margin-top:12px;color:#fff;max-width:24ch;}
+.fg-close{position:absolute;top:16px;right:16px;z-index:3;width:30px;height:30px;border-radius:50%;border:1px solid var(--on-dark-line);
+  background:rgba(255,255,255,.06);color:var(--on-dark);cursor:pointer;display:grid;place-items:center;transition:background .2s;padding:0;}
+.fg-close:hover{background:rgba(255,255,255,.16);}
+.fg-close svg{width:14px;height:14px;}
+.fg-meta{display:flex;align-items:center;justify-content:space-between;padding:14px 22px 0;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);letter-spacing:.04em;}
+.fg-score b{color:var(--teal);}
+.fg-prog{height:4px;background:var(--bone-3);border-radius:100px;margin:10px 22px 0;overflow:hidden;}
+.fg-prog-bar{height:100%;width:0;background:var(--grad);border-radius:100px;transition:width .4s var(--ease);}
+.fg-body{padding:20px 22px 8px;}
+.fg-statement{font-family:var(--serif);font-size:22px;line-height:1.24;letter-spacing:-.01em;min-height:82px;}
+.fg-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.fg-choice{font-family:var(--mono);font-size:14px;letter-spacing:.02em;padding:14px 10px;border-radius:12px;border:1.5px solid var(--line-2);
+  background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s,color .2s,transform .15s;}
+.fg-choice:hover:not(:disabled){border-color:var(--ink);transform:translateY(-1px);}
+.fg-choice:disabled{cursor:default;}
+.fg-choice.correct{background:var(--teal);border-color:var(--teal);color:#fff;}
+.fg-choice.wrong{background:var(--coral);border-color:var(--coral);color:#fff;}
+.fg-choice.dim{opacity:.4;}
+.fg-feedback{margin-top:16px;opacity:0;max-height:0;overflow:hidden;transition:opacity .3s,max-height .3s;}
+.fg-feedback.show{opacity:1;max-height:280px;}
+.fg-verdict{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.fg-verdict.ok{color:var(--teal);}
+.fg-verdict.no{color:var(--coral-deep);}
+.fg-explain{font-size:14px;line-height:1.55;color:var(--ink-soft);margin-top:9px;}
+.fg-next{margin-top:16px;width:100%;font-family:var(--mono);font-size:14px;padding:13px;border-radius:12px;border:none;cursor:pointer;
+  background:var(--ink);color:var(--bone);display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:transform .2s,background .2s;}
+.fg-next:hover{transform:translateY(-1px);background:var(--coral-deep);}
+.fg-foot{padding:12px 22px 18px;font-family:var(--mono);font-size:10.5px;line-height:1.5;color:var(--ink-faint);letter-spacing:.02em;border-top:1px solid var(--line);margin-top:8px;}
+.fg-end{padding:24px 22px 8px;text-align:center;}
+.fg-end .big{font-family:var(--serif);font-size:56px;line-height:1;letter-spacing:-.02em;}
+.fg-end .big .u{color:var(--coral);}
+.fg-end .tier{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-top:12px;}
+.fg-end .msg{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:14px;}
+.fg-end .best{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:10px;}
+.fg-end-cta{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.fg-end-cta .again{font-family:var(--mono);font-size:14px;padding:13px;border-radius:12px;border:none;cursor:pointer;background:var(--ink);color:var(--bone);transition:transform .2s,background .2s;}
+.fg-end-cta .again:hover{transform:translateY(-1px);background:var(--coral-deep);}
+.fg-end-cta .book{font-family:var(--mono);font-size:13px;padding:12px;border-radius:12px;border:1.5px solid var(--line-2);color:var(--ink);transition:border-color .2s;}
+.fg-end-cta .book:hover{border-color:var(--ink);}
+@media(max-width:560px){
+  .fg-fab{right:18px;bottom:18px;}
+  .fg-panel{right:16px;left:16px;bottom:86px;width:auto;max-width:none;}
+  .fg-tip{display:none;}
+}
+@media (prefers-reduced-motion:reduce){ .fg-fab::after{animation:none;} }
+
 /* ============================================================ RESPONSIVE */
 @media(min-width:1700px){.wrap{max-width:1380px;}}
 @media(max-width:1024px){
@@ -726,10 +796,157 @@ header.nav.scrolled .nav-bar{height:62px;}
   </div>
 </footer>
 
+<!-- ============================== FACT-CHECK GAME ============================== -->
+<button class="fg-fab" id="fgFab" aria-label="Play the health fact-check game" aria-expanded="false" aria-controls="fgPanel">
+  <span class="fg-tip">Myth or fact?</span>
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 2.6 4 5.6v5.2c0 4.7 3.2 8.4 8 9.6 4.8-1.2 8-4.9 8-9.6V5.6L12 2.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M8.5 12.2 11 14.6 15.6 9.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<div class="fg-panel" id="fgPanel" role="dialog" aria-modal="false" aria-labelledby="fgTitle" hidden>
+  <div class="fg-head">
+    <span class="fg-glow" aria-hidden="true"></span><span class="fg-glow t" aria-hidden="true"></span>
+    <button class="fg-close" id="fgClose" aria-label="Close the game">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <span class="fg-eyebrow"><svg class="pls" viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5 H4 L5.4 1 L7 9 L8.6 5 H16"/></svg>Fact check</span>
+    <div class="fg-sub" id="fgTitle">We vet health claims for a living. Your turn — myth or fact?</div>
+  </div>
+  <div class="fg-meta">
+    <span class="fg-count" id="fgCount">01 / 08</span>
+    <span class="fg-score">Score <b id="fgScore">0</b></span>
+  </div>
+  <div class="fg-prog"><div class="fg-prog-bar" id="fgProg"></div></div>
+
+  <div class="fg-body" id="fgQuestion">
+    <div class="fg-statement" id="fgStatement"></div>
+    <div class="fg-choices">
+      <button class="fg-choice" id="fgMyth" data-guess="myth">Myth</button>
+      <button class="fg-choice" id="fgFact" data-guess="fact">Fact</button>
+    </div>
+    <div class="fg-feedback" id="fgFeedback">
+      <div class="fg-verdict" id="fgVerdict"></div>
+      <p class="fg-explain" id="fgExplain"></p>
+      <button class="fg-next" id="fgNext">Next <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+
+  <div class="fg-end" id="fgEnd" hidden>
+    <div class="big"><span id="fgFinal">0</span><span class="u">/8</span></div>
+    <div class="tier" id="fgTier"></div>
+    <p class="msg" id="fgMsg"></p>
+    <p class="best" id="fgBest"></p>
+    <div class="fg-end-cta">
+      <button class="again" id="fgAgain">Play again</button>
+      <a class="book" href="#contact" id="fgBook">This is what we do all day — work with us →</a>
+    </div>
+  </div>
+
+  <div class="fg-foot">For awareness, not medical advice. Always consult a qualified professional for health decisions.</div>
+</div>
+
 <script>
 (function(){
   "use strict";
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- fact-check game ---- */
+  var BANK=[
+    {s:"Antibiotics can cure the common cold.",fact:false,e:"Colds are caused by viruses — antibiotics only work on bacteria, so they do nothing for a cold and overuse fuels resistance."},
+    {s:"High blood pressure usually gives clear warning symptoms.",fact:false,e:"It's often silent, which is exactly why regular screening matters — many people feel fine at dangerous levels."},
+    {s:"Regular physical activity lowers the risk of heart disease.",fact:true,e:"One of the most consistent findings in public health — movement protects the heart, even in modest amounts."},
+    {s:"Cracking your knuckles causes arthritis.",fact:false,e:"Long-term studies have found no link between knuckle-cracking and arthritis. It's harmless (if annoying)."},
+    {s:"Handwashing is one of the most effective ways to prevent infection.",fact:true,e:"Simple, cheap, and highly effective — good hand hygiene stops a huge range of infections from spreading."},
+    {s:"A vaccine can give you the disease it's meant to prevent.",fact:false,e:"Inactivated and mRNA vaccines contain no live virus that could cause the illness — they teach the immune system, not infect it."},
+    {s:"Using sunscreen helps reduce the risk of skin cancer.",fact:true,e:"Regular, correct use lowers the risk of melanoma and other skin cancers by limiting UV damage."},
+    {s:"Eating carrots gives you night-vision-level eyesight.",fact:false,e:"Vitamin A prevents deficiency-related vision loss, but carrots won't give super-sight — the myth began as wartime propaganda."}
+  ];
+  var order=[], idx=0, score=0, answered=false;
+  var fab=document.getElementById('fgFab'), panel=document.getElementById('fgPanel'),
+      elClose=document.getElementById('fgClose'), elStmt=document.getElementById('fgStatement'),
+      elMyth=document.getElementById('fgMyth'), elFact=document.getElementById('fgFact'),
+      elFb=document.getElementById('fgFeedback'), elVer=document.getElementById('fgVerdict'),
+      elExp=document.getElementById('fgExplain'), elNext=document.getElementById('fgNext'),
+      elCount=document.getElementById('fgCount'), elScore=document.getElementById('fgScore'),
+      elProg=document.getElementById('fgProg'), elQ=document.getElementById('fgQuestion'),
+      elEnd=document.getElementById('fgEnd'), elFinal=document.getElementById('fgFinal'),
+      elTier=document.getElementById('fgTier'), elMsg=document.getElementById('fgMsg'),
+      elBest=document.getElementById('fgBest'), elAgain=document.getElementById('fgAgain');
+  var N=BANK.length;
+
+  function pad(n){return (n<10?'0':'')+n;}
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  function start(){
+    order=shuffle(BANK.map(function(_,i){return i;})); idx=0; score=0; answered=false;
+    elScore.textContent='0'; elEnd.hidden=true; elQ.style.display='';
+    render();
+  }
+  function render(){
+    answered=false;
+    var q=BANK[order[idx]];
+    elStmt.textContent=q.s;
+    elCount.textContent=pad(idx+1)+' / '+pad(N);
+    elProg.style.width=(idx/N*100)+'%';
+    [elMyth,elFact].forEach(function(b){b.disabled=false;b.className='fg-choice';});
+    elFb.className='fg-feedback';
+  }
+  function choose(guessFact){
+    if(answered) return; answered=true;
+    var q=BANK[order[idx]], correct=(guessFact===q.fact);
+    if(correct){score++; elScore.textContent=score;}
+    (q.fact?elFact:elMyth).classList.add('correct');
+    if(!correct){ (guessFact?elFact:elMyth).classList.add('wrong'); }
+    else{ (q.fact?elMyth:elFact).classList.add('dim'); }
+    elMyth.disabled=true; elFact.disabled=true;
+    elVer.className='fg-verdict '+(correct?'ok':'no');
+    elVer.textContent=correct?'✓ Correct':'✗ Not quite';
+    elExp.textContent=(q.fact?'Fact. ':'Myth. ')+q.e;
+    elProg.style.width=((idx+1)/N*100)+'%';
+    elFb.classList.add('show');
+    elNext.textContent=(idx===N-1?'See your score →':'Next →');
+    elNext.focus();
+  }
+  function next(){
+    if(idx<N-1){ idx++; render(); }
+    else{ finish(); }
+  }
+  function finish(){
+    elQ.style.display='none'; elEnd.hidden=false;
+    elFinal.textContent=score;
+    var tier, msg;
+    if(score>=7){tier='Sharp eye';msg="You'd fit right in on our compliance desk — spotting the claim that shouldn't ship.";}
+    else if(score>=5){tier='Solid instincts';msg="Good radar. The tricky ones are exactly where a specialist earns their keep.";}
+    else{tier='Trickier than it looks';msg="Health claims are slippery — which is why every line we publish is checked first.";}
+    elTier.textContent=tier; elMsg.textContent=msg;
+    try{
+      var best=parseInt(localStorage.getItem('vg-fg-best')||'0',10);
+      if(score>best){best=score;localStorage.setItem('vg-fg-best',String(best));}
+      elBest.textContent='Best: '+best+' / '+N;
+    }catch(e){ elBest.textContent=''; }
+  }
+
+  var opened=false;
+  function openPanel(){
+    panel.hidden=false; fab.classList.add('open'); fab.setAttribute('aria-expanded','true');
+    requestAnimationFrame(function(){panel.classList.add('open');});
+    if(!opened){ start(); opened=true; }
+    setTimeout(function(){elMyth.focus();},260);
+  }
+  function closePanel(){
+    panel.classList.remove('open'); fab.classList.remove('open'); fab.setAttribute('aria-expanded','false');
+    setTimeout(function(){panel.hidden=true;},320); fab.focus();
+  }
+  fab.addEventListener('click',function(){ panel.hidden?openPanel():closePanel(); });
+  elClose.addEventListener('click',closePanel);
+  elMyth.addEventListener('click',function(){choose(false);});
+  elFact.addEventListener('click',function(){choose(true);});
+  elNext.addEventListener('click',next);
+  elAgain.addEventListener('click',start);
+  document.getElementById('fgBook').addEventListener('click',closePanel);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!panel.hidden) closePanel(); });
+
 
   var root=document.documentElement, tog=document.getElementById('tog');
   try{var s=localStorage.getItem('vg-theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
