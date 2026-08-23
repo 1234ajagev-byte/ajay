@@ -90,5 +90,19 @@ representative — swap in real numbers as engagements close.
 
 ## Deploy
 
-Static hosting — GitHub Pages, Netlify, Vercel, or any web server. No build required.
-Point your host at `index.html`.
+Static site — no build step, no dependencies. Works on any static host.
+
+### Vercel (recommended)
+A `vercel.json` is included (clean URLs + long-cache headers for `assets/`, no-cache for
+`index.html`). Two ways to ship:
+
+- **From this repo:** in Vercel, "Add New → Project", import the GitHub repo, leave
+  Framework Preset as **Other** and Build Command empty (Output Directory `.`), then Deploy.
+- **From your machine:** install the CLI (`npm i -g vercel`), run `vercel` in this folder
+  for a preview URL, then `vercel --prod` to go live.
+
+No environment variables or build settings are needed.
+
+### Anything else
+GitHub Pages, Netlify (drag-and-drop the folder), Cloudflare Pages, or any web server —
+just serve `index.html` from the root.
