@@ -55,6 +55,21 @@ packages → chart notes → contact → footer.
 Ambient morphing gradient blobs, page-load reveal sequence, scroll-triggered reveals,
 count-up case/impact stats, a marquee, and hover micro-interactions.
 
+## Case-study imagery
+
+The four case cards use hand-built **SVG scene illustrations** (in brand blue) that read as
+real product UI — a social phone + growth chart, a lead-gen funnel + booking, a website
+mockup + brand swatches, and an always-on content calendar. They're self-contained (no image
+files) and scale crisply on every screen. Swap any for a real screenshot via the `MEDIA SLOT`
+markers.
+
+## Responsive coverage
+
+Verified across desktop (Mac/Windows), iPad / Android tablets, and iPhone / Android phones:
+fluid `clamp()` type, safe-area insets for notch/gesture bars, touch-device fallbacks for
+hover-only cues, and dedicated breakpoints down to small phones. The body clips stray
+horizontal overflow so there's never a sideways scroll.
+
 ## Swapping in real images & video
 
 Coded visuals ship first so the site looks finished immediately. To drop in real media, search

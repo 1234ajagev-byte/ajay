@@ -69,13 +69,13 @@ body{
   font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:400;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
 }
-h1,h2,h3,h4{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.015em;line-height:1.04;text-wrap:balance;}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;margin:0;letter-spacing:-.015em;line-height:1.04;text-wrap:balance;overflow-wrap:break-word;}
 p{margin:0;}
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 ::selection{background:var(--coral);color:#fff;}
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:2px;}
-.wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(40px,env(safe-area-inset-right,0px)) 0 max(40px,env(safe-area-inset-left,0px));}
 .mono{font-family:var(--mono);}
 .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
 
@@ -231,11 +231,12 @@ section.blk{padding:clamp(80px,11vw,150px) 0;position:relative;z-index:2;}
 /* MEDIA SLOT: replace .art with <img src="assets/case-N.jpg" alt="…"> or a short muted <video> */
 .case-media .art{position:absolute;inset:0;transition:transform .6s var(--ease);}
 .case:hover .case-media .art{transform:scale(1.04);}
-.art-a{background:radial-gradient(90% 90% at 20% 20%,var(--coral),transparent 60%),radial-gradient(80% 80% at 100% 100%,var(--teal),transparent 60%),#16302B;}
-.art-b{background:radial-gradient(90% 90% at 80% 15%,#2F6BD0,transparent 60%),radial-gradient(80% 80% at 0% 100%,var(--teal-bright),transparent 60%),#123029;}
-.art-c{background:radial-gradient(85% 90% at 30% 90%,var(--teal-bright),transparent 58%),radial-gradient(80% 80% at 100% 0%,var(--coral),transparent 58%),#1a2b45;}
-.art-d{background:radial-gradient(90% 90% at 60% 20%,var(--coral-deep),transparent 58%),radial-gradient(80% 90% at 0% 100%,var(--teal),transparent 60%),#14261f;}
-.case-media .art::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:100% 34px;}
+.art-a{background:radial-gradient(90% 90% at 18% 12%,#2F6BD0,transparent 60%),radial-gradient(85% 85% at 100% 100%,#1B3A80,transparent 60%),#14284A;}
+.art-b{background:radial-gradient(90% 90% at 82% 10%,#3A72D6,transparent 60%),radial-gradient(80% 85% at 0% 100%,#1E5E9E,transparent 60%),#122645;}
+.art-c{background:radial-gradient(85% 90% at 26% 92%,#46A6E6,transparent 58%),radial-gradient(80% 80% at 100% 0%,#244797,transparent 58%),#16305A;}
+.art-d{background:radial-gradient(90% 90% at 60% 16%,#2F6BD0,transparent 58%),radial-gradient(80% 90% at 0% 100%,#1B3A80,transparent 60%),#0F2138;}
+.scene{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;}
+.case-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(11,21,25,.28) 0%,transparent 26%,transparent 74%,rgba(11,21,25,.22) 100%);}
 .case-media .badge{position:absolute;left:18px;top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:rgba(11,21,19,.42);border:1px solid rgba(255,255,255,.26);padding:7px 13px;border-radius:100px;backdrop-filter:blur(6px);z-index:2;}
 .case-num{font-family:var(--mono);font-size:13px;color:var(--coral);}
 .case-body h3{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.025em;margin-top:14px;}
@@ -352,7 +353,7 @@ header.nav.scrolled .nav-bar{height:62px;}
 .case-media .go svg{width:20px;height:20px;}
 
 /* ---------- fact-check game ---------- */
-.fg-fab{position:fixed;right:26px;bottom:26px;z-index:80;width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;
+.fg-fab{position:fixed;right:calc(26px + env(safe-area-inset-right,0px));bottom:calc(26px + env(safe-area-inset-bottom,0px));z-index:80;width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;
   background:var(--grad);color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(36,71,151,.5);
   transition:transform .3s var(--ease),box-shadow .3s;}
 .fg-fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 18px 40px -10px rgba(36,71,151,.6);}
@@ -364,7 +365,7 @@ header.nav.scrolled .nav-bar{height:62px;}
   background:var(--ink);color:var(--bone);padding:8px 12px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:var(--shadow);}
 .fg-fab:hover .fg-tip{opacity:1;}
 
-.fg-panel{position:fixed;right:26px;bottom:96px;z-index:81;width:374px;max-width:calc(100vw - 32px);
+.fg-panel{position:fixed;right:26px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:81;width:374px;max-width:calc(100vw - 32px);
   background:var(--surface);border:1px solid var(--line-2);border-radius:18px;box-shadow:var(--shadow-lift);overflow:hidden;
   opacity:0;transform:translateY(18px) scale(.98);pointer-events:none;transition:opacity .32s var(--ease),transform .32s var(--ease);}
 .fg-panel.open{opacity:1;transform:none;pointer-events:auto;}
@@ -415,8 +416,8 @@ header.nav.scrolled .nav-bar{height:62px;}
 .fg-end-cta .book{font-family:var(--mono);font-size:13px;padding:12px;border-radius:12px;border:1.5px solid var(--line-2);color:var(--ink);transition:border-color .2s;}
 .fg-end-cta .book:hover{border-color:var(--ink);}
 @media(max-width:560px){
-  .fg-fab{right:18px;bottom:18px;}
-  .fg-panel{right:16px;left:16px;bottom:86px;width:auto;max-width:none;}
+  .fg-fab{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));}
+  .fg-panel{right:16px;left:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;}
   .fg-tip{display:none;}
 }
 @media (prefers-reduced-motion:reduce){ .fg-fab::after{animation:none;} }
@@ -453,8 +454,11 @@ header.nav.scrolled .nav-bar{height:62px;}
   .hero{padding-top:80px;}
 }
 @media(max-width:560px){
-  .wrap{padding:0 24px;}
-  .hero h1{font-size:clamp(42px,13vw,60px);}
+  .wrap{padding:0 max(22px,env(safe-area-inset-right,0px)) 0 max(22px,env(safe-area-inset-left,0px));}
+  .hero h1{font-size:clamp(40px,12vw,58px);}
+  .hero .lede{font-size:17px;}
+  .kicker{margin-bottom:40px;}
+  .case-stats{gap:24px;}
   .impact-grid{grid-template-columns:1fr;gap:0;}
   .stat{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:30px;padding-bottom:30px;}
   .stat:first-child{border-top:none;padding-top:0;}
@@ -465,11 +469,39 @@ header.nav.scrolled .nav-bar{height:62px;}
   .hero-cta .btn{width:100%;justify-content:center;}
   .nav-right .nav-cta{display:none;}
 }
+/* tablet portrait (iPad / Android tablet) */
+@media(min-width:601px) and (max-width:1024px){
+  .work-list{gap:64px;}
+  .kicker{gap:26px;}
+}
+/* touch devices — no hover cues that can strand content */
+@media(hover:none){
+  .svc-row:hover{padding-left:0;padding-right:0;}
+  .case-media .go{display:none;}
+  .navlinks a::after{display:none;}
+  .btn:hover,.nav-cta:hover,.chart:hover,.svc:hover,.case:hover .case-media .art{transform:none;}
+}
+/* small phones */
+@media(max-width:400px){
+  .hero h1{font-size:clamp(32px,11vw,42px);}
+  .hero .lede{font-size:15.5px;}
+  .brand{font-size:19px;}
+  .brand-mark{width:32px;height:32px;}
+  .fg-fab{width:52px;height:52px;}
+  .fg-statement{font-size:20px;}
+  .case-body h3{font-size:26px;}
+  .stat .num{font-size:clamp(44px,15vw,56px);}
+}
+/* landscape phones — keep the mobile menu scrollable */
+@media(max-height:520px) and (orientation:landscape){
+  .navlinks{padding-bottom:24px;}
+}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto;}
   .reveal{opacity:1;transform:none;}
   .blob{animation:none;}
   .pulse-rule path{stroke-dashoffset:0;}
+  .vb-blip{animation:none;}
 }
 </style>
 </head>
@@ -615,7 +647,17 @@ header.nav.scrolled .nav-bar{height:62px;}
     <div class="work-list">
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-a"></div><span class="badge">Multi-specialty clinic · UK</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-a"><svg class="scene" viewBox="0 0 500 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g><rect x="54" y="74" width="176" height="292" rx="26" fill="#fff" opacity=".97"/>
+            <circle cx="88" cy="112" r="15" fill="#DCE6FA"/><rect x="112" y="102" width="76" height="9" rx="4.5" fill="#244797" opacity=".55"/><rect x="112" y="117" width="48" height="7" rx="3.5" fill="#9DB4E4"/>
+            <path d="M70 154 H92 L100 138 L110 172 L120 144 L126 154 H214" stroke="#244797" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <g><rect x="70" y="176" width="46" height="46" rx="7" fill="#EAF0FB"/><rect x="124" y="176" width="46" height="46" rx="7" fill="#BBD0F2"/><rect x="178" y="176" width="46" height="46" rx="7" fill="#EAF0FB"/><rect x="70" y="230" width="46" height="46" rx="7" fill="#BBD0F2"/><rect x="124" y="230" width="46" height="46" rx="7" fill="#EAF0FB"/><rect x="178" y="230" width="46" height="46" rx="7" fill="#D3E1F7"/></g>
+            <rect x="70" y="292" width="150" height="10" rx="5" fill="#DCE6FA"/><rect x="70" y="310" width="104" height="10" rx="5" fill="#EAF0FB"/><rect x="150" y="332" width="70" height="22" rx="11" fill="#244797"/></g>
+          <g><rect x="262" y="150" width="188" height="150" rx="16" fill="#fff" opacity=".97"/><rect x="282" y="170" width="66" height="9" rx="4.5" fill="#9DB4E4"/>
+            <path d="M282 272 L316 250 L342 258 L374 224 L404 234 L436 196 V286 H282 Z" fill="#244797" opacity=".09"/>
+            <path d="M282 272 L316 250 L342 258 L374 224 L404 234 L436 196" stroke="#244797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="436" cy="196" r="5.5" fill="#244797"/></g>
+          <g><rect x="300" y="92" width="104" height="42" rx="21" fill="#244797"/><path d="M320 113 l8 -8 l6 6 l11 -13" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="352" y="119" fill="#fff" font-family="'Space Mono',monospace" font-size="17" font-weight="700">+42%</text></g>
+        </svg></div><span class="badge">Multi-specialty clinic · UK</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/01</span>
           <h3>From quiet to a full calendar</h3>
@@ -630,7 +672,15 @@ header.nav.scrolled .nav-bar{height:62px;}
       </article>
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-b"></div><span class="badge">Dental group · Gulf</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-b"><svg class="scene" viewBox="0 0 500 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g><rect x="52" y="70" width="250" height="260" rx="18" fill="#fff" opacity=".97"/>
+            <rect x="76" y="94" width="80" height="10" rx="5" fill="#244797" opacity=".55"/><rect x="76" y="112" width="52" height="8" rx="4" fill="#9DB4E4"/>
+            <g><path d="M76 142 H278 L246 168 H108 Z" fill="#BBD0F2"/><path d="M112 178 H242 L216 204 H138 Z" fill="#6E9AE6"/><path d="M142 214 H212 L192 240 H162 Z" fill="#244797"/></g>
+            <g fill="#DCE6FA"><rect x="76" y="262" width="26" height="44" rx="4"/><rect x="112" y="250" width="26" height="56" rx="4"/><rect x="148" y="236" width="26" height="70" rx="4"/></g>
+            <g fill="#244797"><rect x="200" y="272" width="26" height="34" rx="4"/><rect x="236" y="256" width="26" height="50" rx="4"/></g></g>
+          <g><rect x="286" y="150" width="164" height="70" rx="14" fill="#fff" opacity=".97"/><text x="306" y="182" fill="#244797" font-family="'Space Mono',monospace" font-size="26" font-weight="700">-58%</text><path d="M398 176 l-9 9 l-6 -6 l-11 12" stroke="#244797" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="306" y="192" width="120" height="7" rx="3.5" fill="#9DB4E4"/></g>
+          <g><rect x="286" y="238" width="164" height="52" rx="26" fill="#244797"/><circle cx="316" cy="264" r="13" fill="#fff"/><path d="M310 264 l4 4 l8 -9" stroke="#244797" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="340" y="256" width="94" height="8" rx="4" fill="#fff"/><rect x="340" y="270" width="64" height="7" rx="3.5" fill="#BBD0F2"/></g>
+        </svg></div><span class="badge">Dental group · Gulf</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/02</span>
           <h3>Booked out on paid social</h3>
@@ -645,7 +695,17 @@ header.nav.scrolled .nav-bar{height:62px;}
       </article>
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-c"></div><span class="badge">Med-spa · USA</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-c"><svg class="scene" viewBox="0 0 500 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g><rect x="56" y="66" width="388" height="234" rx="16" fill="#fff" opacity=".98"/>
+            <path d="M56 82 a16 16 0 0 1 16 -16 H428 a16 16 0 0 1 16 16 V96 H56 Z" fill="#EAF0FB"/>
+            <circle cx="78" cy="81" r="4" fill="#C3D3F0"/><circle cx="92" cy="81" r="4" fill="#C3D3F0"/><circle cx="106" cy="81" r="4" fill="#C3D3F0"/>
+            <rect x="150" y="75" width="220" height="12" rx="6" fill="#fff"/>
+            <rect x="80" y="120" width="150" height="14" rx="7" fill="#244797" opacity=".6"/><rect x="80" y="144" width="200" height="10" rx="5" fill="#C3D3F0"/><rect x="80" y="162" width="170" height="10" rx="5" fill="#D7E2F6"/>
+            <rect x="80" y="192" width="96" height="30" rx="15" fill="#244797"/><rect x="98" y="203" width="60" height="8" rx="4" fill="#fff"/>
+            <rect x="300" y="118" width="120" height="120" rx="12" fill="#DCE6FA"/><path d="M316 210 L344 184 L360 196 L388 168 L404 180" stroke="#6E9AE6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="336" cy="150" r="12" fill="#BBD0F2"/></g>
+          <g><rect x="56" y="316" width="388" height="46" rx="14" fill="#fff" opacity=".97"/><rect x="76" y="332" width="70" height="14" rx="7" fill="#9DB4E4"/>
+            <circle cx="330" cy="339" r="11" fill="#244797"/><circle cx="360" cy="339" r="11" fill="#3A72D6"/><circle cx="390" cy="339" r="11" fill="#46A6E6"/><circle cx="420" cy="339" r="11" fill="#CFE0FF"/></g>
+        </svg></div><span class="badge">Med-spa · USA</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/03</span>
           <h3>A brand patients choose</h3>
@@ -660,7 +720,20 @@ header.nav.scrolled .nav-bar{height:62px;}
       </article>
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-d"></div><span class="badge">Hospital group · Australia</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-d"><svg class="scene" viewBox="0 0 500 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g><rect x="52" y="70" width="228" height="260" rx="16" fill="#fff" opacity=".97"/>
+            <rect x="74" y="92" width="90" height="10" rx="5" fill="#244797" opacity=".55"/>
+            <g fill="#E7EFFB"><rect x="74" y="118" width="40" height="34" rx="5"/><rect x="122" y="118" width="40" height="34" rx="5"/><rect x="170" y="118" width="40" height="34" rx="5"/><rect x="218" y="118" width="40" height="34" rx="5"/>
+              <rect x="74" y="160" width="40" height="34" rx="5"/><rect x="122" y="160" width="40" height="34" rx="5"/><rect x="170" y="160" width="40" height="34" rx="5"/><rect x="218" y="160" width="40" height="34" rx="5"/>
+              <rect x="74" y="202" width="40" height="34" rx="5"/><rect x="122" y="202" width="40" height="34" rx="5"/><rect x="170" y="202" width="40" height="34" rx="5"/><rect x="218" y="202" width="40" height="34" rx="5"/></g>
+            <g fill="#244797"><rect x="122" y="118" width="40" height="34" rx="5"/><rect x="218" y="160" width="40" height="34" rx="5"/><rect x="74" y="202" width="40" height="34" rx="5"/></g>
+            <g fill="#6E9AE6"><rect x="170" y="118" width="40" height="34" rx="5"/><rect x="122" y="202" width="40" height="34" rx="5"/></g>
+            <rect x="74" y="256" width="184" height="10" rx="5" fill="#DCE6FA"/><rect x="74" y="274" width="140" height="10" rx="5" fill="#EAF0FB"/><rect x="74" y="298" width="80" height="18" rx="9" fill="#244797"/></g>
+          <g><rect x="300" y="70" width="148" height="96" rx="14" fill="#fff" opacity=".97"/><rect x="318" y="88" width="112" height="60" rx="8" fill="#DCE6FA"/><path d="M362 100 v36 l30 -18 Z" fill="#244797"/></g>
+          <g><rect x="300" y="180" width="148" height="150" rx="14" fill="#fff" opacity=".97"/><rect x="320" y="200" width="60" height="8" rx="4" fill="#9DB4E4"/>
+            <path d="M320 296 L346 276 L370 284 L398 256 L428 266" stroke="#244797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="428" cy="266" r="5" fill="#244797"/>
+            <g><circle cx="330" cy="316" r="7" fill="#244797"/><circle cx="352" cy="316" r="7" fill="#3A72D6"/><circle cx="374" cy="316" r="7" fill="#46A6E6"/><circle cx="396" cy="316" r="7" fill="#CFE0FF"/><circle cx="418" cy="316" r="7" fill="#BBD0F2"/></g></g>
+        </svg></div><span class="badge">Hospital group · Australia</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/04</span>
           <h3>Continuous, always on</h3>
