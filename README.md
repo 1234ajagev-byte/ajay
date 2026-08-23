@@ -24,7 +24,12 @@ brand they **choose** — warm meeting clinical. The signature is a slow, living
 | Minor — data / labels | Space Mono |
 | Ground (dark) | Clinical ink `#0B1513` |
 | Ground (light) | Bone `#F2F3F1` |
-| Signature gradient | Living coral `#FF6A55` → vital teal `#12897A` |
+| Brand blue (logo) | `#244797` |
+| Signature gradient | Brand blue `#244797` → azure `#2F6BD0` → sky `#46A6E6` |
+
+The palette is tuned to the real logo, whose one fixed colour is `#244797`. The logo
+(all formats — SVG/PNG/WebP/PDF/AI/EPS) lives in `assets/`; the page embeds the SVG
+inline via the `--logo` CSS variable, and it appears in the nav and footer.
 
 The live page loads Lora + Nunito from Google Fonts (identical to the SIL OFL files).
 Your uploaded files are committed under `assets/fonts/` for self-hosting — to use them
