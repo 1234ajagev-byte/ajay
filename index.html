@@ -318,6 +318,22 @@ footer.ft .wrap{display:flex;justify-content:space-between;align-items:center;ga
 .ft-brand .brand-mark{width:22px;height:22px;}
 footer.ft a:hover{color:var(--coral);}
 
+/* ---------- refinements ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;background:var(--grad);transition:width .12s linear;}
+.nav-bar{transition:height .35s var(--ease);}
+header.nav.scrolled{box-shadow:var(--shadow);}
+header.nav.scrolled .nav-bar{height:62px;}
+.pulse-rule{width:100%;height:44px;display:block;margin:38px 0 4px;overflow:visible;}
+.pulse-rule path{fill:none;stroke:url(#pg);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1500;stroke-dashoffset:1500;animation:pdraw 5.4s var(--ease) infinite;filter:drop-shadow(0 0 5px rgba(255,106,85,.4));}
+@keyframes pdraw{0%{stroke-dashoffset:1500;}52%{stroke-dashoffset:0;}78%{stroke-dashoffset:0;}100%{stroke-dashoffset:-1500;}}
+.case-media .go{position:absolute;right:18px;bottom:18px;z-index:2;width:52px;height:52px;border-radius:50%;
+  background:rgba(11,21,19,.4);border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(6px);
+  display:grid;place-items:center;color:#fff;opacity:0;transform:translateY(10px) scale(.88);
+  transition:opacity .4s var(--ease),transform .4s var(--ease);}
+.case:hover .case-media .go{opacity:1;transform:none;}
+.case-media .go svg{width:20px;height:20px;}
+
 /* ============================================================ RESPONSIVE */
 @media(min-width:1700px){.wrap{max-width:1380px;}}
 @media(max-width:1024px){
@@ -366,11 +382,14 @@ footer.ft a:hover{color:var(--coral);}
   *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto;}
   .reveal{opacity:1;transform:none;}
   .blob{animation:none;}
+  .pulse-rule path{stroke-dashoffset:0;}
 }
 </style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF6A55"/><stop offset=".5" stop-color="#F7845E"/><stop offset="1" stop-color="#2FB79E"/></linearGradient></defs></svg>
 
 <!-- ============================== NAV ============================== -->
 <header class="nav">
@@ -420,7 +439,10 @@ footer.ft a:hover{color:var(--coral);}
       <a class="btn btn-grad" href="#contact">Start a project <span class="arr">→</span></a>
       <a class="btn btn-line on-dark" href="#work">See our work</a>
     </div>
-    <div class="hero-foot reveal in" data-d="4">
+    <svg class="pulse-rule reveal in" data-d="4" viewBox="0 0 1160 44" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,22 H360 L384,22 L400,6 L416,40 L432,2 L448,22 L600,22 L720,22 L744,22 L760,8 L776,38 L792,4 L808,22 L980,22 H1160"/>
+    </svg>
+    <div class="hero-foot reveal in" data-d="5">
       <div class="hero-markets">
         <div><span class="mono">Reviewed against</span>FTC · ASA · GMC · DHA · TGA</div>
         <div><span class="mono">Built for</span>Clinics · hospitals · med-spas · health brands</div>
@@ -506,7 +528,7 @@ footer.ft a:hover{color:var(--coral);}
     <div class="work-list">
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-a"></div><span class="badge">Multi-specialty clinic · UK</span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-a"></div><span class="badge">Multi-specialty clinic · UK</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/01</span>
           <h3>From quiet to a full calendar</h3>
@@ -521,7 +543,7 @@ footer.ft a:hover{color:var(--coral);}
       </article>
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-b"></div><span class="badge">Dental group · Gulf</span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-b"></div><span class="badge">Dental group · Gulf</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/02</span>
           <h3>Booked out on paid social</h3>
@@ -536,7 +558,7 @@ footer.ft a:hover{color:var(--coral);}
       </article>
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-c"></div><span class="badge">Med-spa · USA</span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-c"></div><span class="badge">Med-spa · USA</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/03</span>
           <h3>A brand patients choose</h3>
@@ -551,7 +573,7 @@ footer.ft a:hover{color:var(--coral);}
       </article>
 
       <article class="case reveal">
-        <div class="case-media-wrap"><div class="case-media"><div class="art art-d"></div><span class="badge">Hospital group · Australia</span></div></div>
+        <div class="case-media-wrap"><div class="case-media"><div class="art art-d"></div><span class="badge">Hospital group · Australia</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></div>
         <div class="case-body">
           <span class="case-num">W/04</span>
           <h3>Continuous, always on</h3>
@@ -721,6 +743,18 @@ footer.ft a:hover{color:var(--coral);}
   document.querySelectorAll('#navlinks a').forEach(function(a){a.addEventListener('click',function(){if(mi)mi.checked=false;});});
 
   var mq=document.getElementById('marq');if(mq)mq.innerHTML+=mq.innerHTML;
+
+  /* scroll progress + nav state */
+  var prog=document.getElementById('progress'), nav=document.querySelector('header.nav'), ticking=false;
+  function onScroll(){
+    var st=window.pageYOffset||document.documentElement.scrollTop;
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(prog)prog.style.width=(h>0?(st/h*100):0)+'%';
+    if(nav)nav.classList.toggle('scrolled', st>24);
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+  onScroll();
 
   var reveals=document.querySelectorAll('.reveal:not(.in)');
   if(reduce||!('IntersectionObserver' in window)){reveals.forEach(function(el){el.classList.add('in');});}
