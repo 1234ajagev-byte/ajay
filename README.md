@@ -19,12 +19,23 @@ brand they **choose** — warm meeting clinical. The signature is a slow, living
 
 | Role | Value |
 |------|-------|
-| Display | Fraunces (warm high-contrast serif, italic for emphasis) |
-| Body / UI | Space Grotesk |
-| Data / labels | Space Mono |
+| Primary — headings / display | **Lora** (serif, italic for emphasis) |
+| Secondary — body / UI / buttons | **Nunito** |
+| Minor — data / labels | Space Mono |
 | Ground (dark) | Clinical ink `#0B1513` |
 | Ground (light) | Bone `#F2F3F1` |
 | Signature gradient | Living coral `#FF6A55` → vital teal `#12897A` |
+
+The live page loads Lora + Nunito from Google Fonts (identical to the SIL OFL files).
+Your uploaded files are committed under `assets/fonts/` for self-hosting — to use them
+instead of Google Fonts, drop the `<link>` in `<head>` and add:
+
+```css
+@font-face{font-family:'Lora';src:url('assets/fonts/Lora-Variable.ttf') format('truetype');font-weight:400 700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Lora';src:url('assets/fonts/Lora-Italic-Variable.ttf') format('truetype');font-weight:400 700;font-style:italic;font-display:swap;}
+@font-face{font-family:'Nunito';src:url('assets/fonts/Nunito-Variable.ttf') format('truetype');font-weight:400 800;font-style:normal;font-display:swap;}
+@font-face{font-family:'Nunito';src:url('assets/fonts/Nunito-Italic-Variable.ttf') format('truetype');font-weight:400 700;font-style:italic;font-display:swap;}
+```
 
 Cinematic dark hero + dark punctuation bands, light editorial body. Full light **and** dark
 themes (toggle in the nav; respects OS preference). Grain texture throughout. All motion
